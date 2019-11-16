@@ -5,7 +5,6 @@
 ### Notas 📋 
 * Para ejecutar es necesario tener la version 9.10 del 
 Robotics Toolbox de Peter Corke
- 
 ### Lenguaje 📦
  MATLAB
 ### Autores ✒️
