@@ -98,7 +98,6 @@ function [q, qdot, r, rd, rdd, tmax] = cirtraj2(PSt ,PTt, R, qv, qa, dt)
 
         T_(:,:,l) = transl(p(l,:)) * rpy2tr(fi(l,:),'xyz');
 
-%         q(l,:) = R.ikine(T_(:,:,l),'q0',qant, 'slimit', 10000, 'rlimit', 10000, 'ilimit',10000);
         q(l,:) = pinoikine(qant',T_(:,:,l),R);
         qant = q(l,:);
 
@@ -113,41 +112,4 @@ function [q, qdot, r, rd, rdd, tmax] = cirtraj2(PSt ,PTt, R, qv, qa, dt)
         qdot(i,:) = pinv(R.jacob0(q(i,:))) * rd(i,:)';
     end
 
-
-    if length(t) ~= length(q)
-        tmax = tmax - dt;
-%         t(end) = [];
-    end
-
-
-
-%     figure(1)
-%     title('Joint Position');
-%     qplot7(t,q);
-% 
-%     figure(2)
-%     title('Joint Velocity');
-%     qplot7(t,qdot);
-% 
-%     figure(3)
-%     title('Cartesian Position');
-%     qplot(t, r);
-%     legend('x', 'y', 'z', 'al', 'be', 'ga');
-% 
-%     figure(4)
-%     title('Cartesian Velocity');
-%     qplot(t,rd);
-%     legend('x', 'y', 'z', 'al', 'be', 'ga');
-% 
-%     figure(5)
-%     title('Cartesian Acceleration');
-%     qplot(t,rdd);
-%     legend('x', 'y', 'z', 'al', 'be', 'ga');
-% 
-%     figure(6)
-%     title('Trajectory')
-%     plot3(p(:,1),p(:,2),p(:,3), 'r*');
-%     hold on;
-%     R.plot(q(1,:));
-%     R.animate(q);
 end
